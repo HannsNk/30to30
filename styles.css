@@ -1,0 +1,105 @@
+body {
+    background-color: #a1a1a1;
+}
+                
+.door {
+      background-color: gray; /* Default color */
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      font-family: "Sniglet", serif;
+      font-size: 80px;
+      background-size: 450px, cover; /* Sets a specific size for the background */
+      background-position: center, center; /* Centers the image within the box */
+      background-repeat: no-repeat, no-repeat; /* Prevents tiling */
+    }
+
+    /* Subclasses for sizes */
+
+    .door.small {
+      width: 100px;
+      height: 150px;
+    }
+
+    .door.medium {
+      width: 150px;
+      height: 200px;
+    }
+
+    .door.large {
+      width: 200px;
+      height: 250px;
+    }
+
+    /* Example custom colors */
+    .pink {
+        background-image: url('images/bg_pink.png');
+    }
+
+    .purple {
+        background-image: url('images/bg_purple.png');
+    }
+
+    .yellow {
+        background-image: url('images/bg_yellow.png');
+    }
+
+/* Popup styles */
+#popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+.hidden {
+    display: none;
+}
+  
+.popup-content {
+    position: relative;
+    width: 60%;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.popup-content .popup-image {
+    width: 100%;
+    height: 400px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Make the image fill the door */
+.door-image {
+    width: 100%; /* Full width of the door */
+    height: 100%; /* Full height of the door */
+    object-fit: cover; /* Ensures the image scales properly without distortion */
+    border-radius: inherit; /* Matches the door's rounded corners */
+  }
