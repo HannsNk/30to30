@@ -19,6 +19,7 @@ body {
       border: 1px solid #ccc;
       cursor: pointer;
       box-sizing: border-box;
+      margin: 5px;
     }
 
     .door span {
@@ -79,6 +80,20 @@ body {
         background-image: url('images/bg_last.png');
     }
 
+    .door-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 100%;
+      margin: 0 auto;
+      padding: 5px; /* Small margin around the container */
+      box-sizing: border-box;
+  }
+  
+  .door-column {
+      flex: 1;
+      margin: 5px; /* Adjust the margin between columns as needed */
+  }
 
 /* Popup styles */
 #popup {
@@ -125,20 +140,7 @@ body {
   font-size: 18px;
 }
 
-.door-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
-    margin: 0 auto;
-    padding: 5px; /* Small margin around the container */
-    box-sizing: border-box;
-}
-
-.door-column {
-    flex: 1;
-    margin: 5px; /* Adjust the margin between columns as needed */
-}
+/* Header styles */
 
 .header-container {
     display: flex;
