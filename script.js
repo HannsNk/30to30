@@ -15,7 +15,8 @@ function openPopup(event) {
     const bigImage = clickedDoor.dataset.bigImage; // Get big image URL from the data attribute
     console.log("Image URL: ", bigImage); // Add this line for debugging
 
-    popupImage.style.backgroundImage = `url('${bigImage}')`; // Set the big image as the background image
+    popupImage.src = bigImage; // Set the big image as the background image
+    console.log("Popup image updated:", popupImage); // Add this line for debugging
     popup.classList.remove("hidden"); // unhide the popup
 
     // Update door when popup is closed
@@ -29,16 +30,16 @@ function closePopup() {
   
     // Check if currentDoor exists
     if (currentDoor) {
-      const bigImage = popupImage.style.backgroundImage; // Get the big image URL
+      const bigImage = popupImage.getAttribute('src'); // Get the big image URL
       console.log("Retrieved Backgroundimage:", bigImage); // Add this line for debugging
 
-      const bigImageUrl = bigImage.slice(5, -2); // Extract the URL from the `backgroundImage` style
-      console.log("Extracted URL:", bigImageUrl); // Add this line for debugging
+      //const bigImageUrl = bigImage.slice(5, -2); // Extract the URL from the `backgroundImage` style
+      //console.log("Extracted URL:", bigImageUrl); // Add this line for debugging
 
       // Clear existing content and add the bigImage as an <img>
-      currentDoor.innerHTML = `<img src="${bigImageUrl}" alt="Door Image" class="door-image">`;
-      // TODO fix: this line adds an image that is then being clicked. The image should be added to the door, not replace the door.
-
+      console.log("BigImage src", bigImage);
+      currentDoor.style.backgroundImage = `url('${bigImage}')`;
+      currentDoor.style.backgroundSize = "cover";
 
       console.log("Updated door content with <img>:", currentDoor);
     } else {
@@ -61,5 +62,3 @@ document.querySelectorAll(".door").forEach((door) => {
 
 // Attach event listener to close button
 closeBtn.addEventListener("click", closePopup);
-
-// TODO fix 2 opens

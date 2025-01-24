@@ -78,10 +78,10 @@ body {
 /* Popup styles */
 #popup {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0; /* Align the popup to the top */
+    left: 0; /* Align the popup to the left */
     width: 100vw;
-    height: 100vh;
+    height: 100vh; 
     background-color: rgba(0, 0, 0, 0.8);
     justify-content: center;
     align-items: center;
@@ -91,47 +91,34 @@ body {
 .hidden {
     display: none;
 }
-  
-.popup-content {
-    position: relative;
-    width: 60%;
-    max-width: 800px;
-    background-color: white;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
+
+.popup-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Ensure the container takes the full viewport height */
 }
 
-.popup-content .popup-image {
-    width: 100%;
-    height: 400px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+.popup-image {
+  width: 65vw;
+  height: 85vh;
+  object-fit: contain;
+  /*box-shadow: 0 10px 50px rgba(0, 0, 0, 1); /* Add drop shadow */
 }
 
 #close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: red;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    font-size: 18px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 18px;
 }
-
-/* Make the image fill the door */
-.door-image {
-    width: 100%; /* Full width of the door */
-    height: 100%; /* Full height of the door */
-    object-fit: cover; /* Ensures the image scales properly without distortion */
-    border-radius: inherit; /* Matches the door's rounded corners */
-  }
 
 .door-container {
     display: flex;
