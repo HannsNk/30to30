@@ -1,7 +1,7 @@
 body {
     background-color: #a1a1a1;
 }
-                
+
 .door {
       background-color: gray; /* Default color */
       color: white; /* Default text color */
@@ -138,4 +138,15 @@ body {
 .door-column {
     flex: 1;
     margin: 5px; /* Adjust the margin between columns as needed */
+}
+
+.header-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#header-image {
+  display: block;
+  width: 50%;
 }
