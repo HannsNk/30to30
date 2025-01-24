@@ -39,12 +39,6 @@ doors.forEach(door => {
     }
     
     door.dataset.isFutureDate = isFutureDate.toString();
-    
-    // check which is the correct door for today
-    if (door.dataset.isFutureDate == 'false' && door.dataset.isBeforeToday === 'false') {
-        console.log('Door', door.textContent, 'is a match');
-        
-    }
 });
 
 // Set the background image for doors where isBeforeToday is 'true'
@@ -91,6 +85,18 @@ function openPopup(event) {
     console.log("Popup image updated:", popupImage); // Add this line for debugging
     popup.classList.remove("hidden"); // unhide the popup
 
+    // Check if the door has a span with text '7'
+    const span = clickedDoor.querySelector('span');
+    if (span && span.textContent.trim() === '7') {
+        popupImage.style.cursor = 'pointer';
+        popupImage.onclick = () => {
+          window.open('https://drive.google.com/file/d/1-8zzQClh0rWPh7TCE6uAWSD7w63rRNov/view?usp=sharing.com', '_blank');
+        };
+    } else {
+        popupImage.style.cursor = 'default';
+        popupImage.onclick = null;
+    }
+
     // Update door when popup is closed
     currentDoor = clickedDoor; // Store the clicked door for later
     console.log("Door updated::", currentDoor); // Add this line for debugging
@@ -99,10 +105,9 @@ function openPopup(event) {
 function closePopup() {
     console.log("Close button clicked");
     console.log("Current door before close:", currentDoor);
-
+  
     // Check if currentDoor exists
     if (currentDoor) {
-
       const bigImage = popupImage.getAttribute('src'); // Get the big image URL
       console.log("Retrieved Backgroundimage:", bigImage); // Add this line for debugging
 
