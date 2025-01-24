@@ -41,6 +41,8 @@ function closePopup() {
       currentDoor.style.backgroundImage = `url('${bigImage}')`;
       currentDoor.style.backgroundSize = "cover";
 
+      currentDoor.style.color = "transparent"; // Hide the text
+
       console.log("Updated door content with <img>:", currentDoor);
     } else {
       console.error("No door found to update.");
