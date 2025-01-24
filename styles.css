@@ -4,7 +4,7 @@ body {
                 
 .door {
       background-color: gray; /* Default color */
-      color: white;
+      color: white; /* Default text color */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -134,5 +134,3 @@ body {
     flex: 1;
     margin: 5px; /* Adjust the margin between columns as needed */
 }
-
-/* TODO make the popup huge without white borders */
