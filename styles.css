@@ -21,6 +21,11 @@ body {
       box-sizing: border-box;
     }
 
+    .door span {
+      position: center;
+      transform: translate(0%, 75%);
+    }
+
     /* Subclasses for sizes */
 
     .door.small {
