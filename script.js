@@ -3,8 +3,17 @@ const today = new Date();
 console.log("Today's date:", today);
 
 // Create a new date variable set to a custom date
-const birthdayDate = new Date(today.getFullYear(), 1, 18); // Month is 0-indexed, so 1 is February
+const birthdayDate = new Date(today.getFullYear(), 0, 30); // Month is 0-indexed, so 1 is February
 console.log("BirthdayDate:", birthdayDate);
+
+// Calculate the difference in time between birthdayDate and today
+const timeDifference = birthdayDate.getTime() - today.getTime();
+const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24)); // Convert milliseconds to days
+console.log("Days difference:", daysDifference);
+
+// Calculate what door is today's door
+const result = daysDifference - 30;
+console.log(`Today's Door: ${result*-1}`);
 
 // Select all door elements
 const doors = document.querySelectorAll('.door');
@@ -19,10 +28,22 @@ doors.forEach(door => {
     door.dataset.birthdayMinusDays = birthdayMinusDays;
 
     // Check if the birthdayMinusDays date is before or after today
+    const isFutureDate = calculatedDate > today;
+
+    calculatedDate.setDate(calculatedDate.getDate() + 1); // Add 1 day to the calculated date
+
     if (calculatedDate < today) {
         door.dataset.isBeforeToday = 'true';
     } else {
         door.dataset.isBeforeToday = 'false';
+    }
+    
+    door.dataset.isFutureDate = isFutureDate.toString();
+    
+    // check which is the correct door for today
+    if (door.dataset.isFutureDate == 'false' && door.dataset.isBeforeToday === 'false') {
+        console.log('Door', door.textContent, 'is a match');
+        
     }
 });
 
@@ -56,7 +77,14 @@ function openPopup(event) {
     }
     console.log("Door clicked:", clickedDoor); // Add this line for debugging
 
-    const bigImage = clickedDoor.dataset.bigImage; // Get big image URL from the data attribute
+    // check if the current door's date is a future date
+    var bigImage = clickedDoor.dataset.bigImage;
+    if (clickedDoor.dataset.isFutureDate === 'true') {
+      bigImage= 'images/no-no-no.gif'; // set the image to nonono image
+    } else {
+      bigImage = clickedDoor.dataset.bigImage; // Get big image URL from the data attribute
+    };
+
     console.log("Image URL: ", bigImage); // Add this line for debugging
 
     popupImage.src = bigImage; // Set the big image as the background image
@@ -71,9 +99,10 @@ function openPopup(event) {
 function closePopup() {
     console.log("Close button clicked");
     console.log("Current door before close:", currentDoor);
-  
+
     // Check if currentDoor exists
     if (currentDoor) {
+
       const bigImage = popupImage.getAttribute('src'); // Get the big image URL
       console.log("Retrieved Backgroundimage:", bigImage); // Add this line for debugging
 
