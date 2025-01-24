@@ -1,3 +1,41 @@
+// Get today's date
+const today = new Date();
+console.log("Today's date:", today);
+
+// Create a new date variable set to a custom date
+const birthdayDate = new Date(today.getFullYear(), 1, 18); // Month is 0-indexed, so 1 is February
+console.log("BirthdayDate:", birthdayDate);
+
+// Select all door elements
+const doors = document.querySelectorAll('.door');
+
+// Assign the calculated date to each door element as a data attribute
+doors.forEach(door => {
+    const span = door.querySelector('span');
+    const daysToSubtract = parseInt(span.textContent, 10); // Get the number from the span
+    const calculatedDate = new Date(birthdayDate);
+    calculatedDate.setDate(birthdayDate.getDate() - 30 + daysToSubtract); // Subtract the number of days
+    const birthdayMinusDays = calculatedDate.toISOString().split('T')[0]; // Store the date in YYYY-MM-DD format
+    door.dataset.birthdayMinusDays = birthdayMinusDays;
+
+    // Check if the birthdayMinusDays date is before or after today
+    if (calculatedDate < today) {
+        door.dataset.isBeforeToday = 'true';
+    } else {
+        door.dataset.isBeforeToday = 'false';
+    }
+});
+
+// Set the background image for doors where isBeforeToday is 'true'
+doors.forEach(door => {
+    if (door.dataset.isBeforeToday === 'true') {
+        const bigImage = door.dataset.bigImage;
+        door.style.backgroundImage = `url('${bigImage}')`;
+        door.style.backgroundSize = "cover";
+        door.style.color = "transparent"; // Hide the text
+    }
+});
+
 // Select popup elements
 const popup = document.getElementById("popup");
 const popupImage = document.querySelector(".popup-image");
@@ -9,7 +47,13 @@ var currentDoor = null; // Store the clicked door for later
 function openPopup(event) {
     console.log("Open door clicked"); // Add this line for debugging
 
-    const clickedDoor = event.target;
+    let clickedDoor = event.target;
+    console.log("Element clicked:", clickedDoor); // Add this line for debugging
+
+    // Check if the event target is a span element
+    if (clickedDoor.tagName.toLowerCase() === 'span') {
+        clickedDoor = clickedDoor.parentElement; // Assign clickedDoor to the parent element (the door)
+    }
     console.log("Door clicked:", clickedDoor); // Add this line for debugging
 
     const bigImage = clickedDoor.dataset.bigImage; // Get big image URL from the data attribute
@@ -33,9 +77,6 @@ function closePopup() {
       const bigImage = popupImage.getAttribute('src'); // Get the big image URL
       console.log("Retrieved Backgroundimage:", bigImage); // Add this line for debugging
 
-      //const bigImageUrl = bigImage.slice(5, -2); // Extract the URL from the `backgroundImage` style
-      //console.log("Extracted URL:", bigImageUrl); // Add this line for debugging
-
       // Clear existing content and add the bigImage as an <img>
       console.log("BigImage src", bigImage);
       currentDoor.style.backgroundImage = `url('${bigImage}')`;
@@ -52,10 +93,7 @@ function closePopup() {
     popup.classList.add("hidden");
     currentDoor = null; // Clear the reference
     console.log("Popup closed and current door cleared.");
-  }
-  
-  
-
+}
 
 // Attach event listeners to doors
 document.querySelectorAll(".door").forEach((door) => {
