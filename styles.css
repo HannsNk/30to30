@@ -152,3 +152,17 @@ body {
   display: block;
   width: 50%;
 }
+
+/* Footer styles */
+
+.footer-container {
+  color:#c5c5c5;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#love {
+  display: block;
+  width: 50%;
+}
