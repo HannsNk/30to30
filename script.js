@@ -3,7 +3,7 @@ const today = new Date();
 console.log("Today's date:", today);
 
 // Create a new date variable set to a custom date
-const birthdayDate = new Date(today.getFullYear(), 0, 30); // Month is 0-indexed, so 1 is February
+const birthdayDate = new Date(today.getFullYear(), 2, 16); // Month is 0-indexed, so 1 is February
 console.log("BirthdayDate:", birthdayDate);
 
 // Calculate the difference in time between birthdayDate and today
